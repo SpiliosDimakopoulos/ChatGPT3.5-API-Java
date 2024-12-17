@@ -61,9 +61,54 @@ project/ │ ├── src/ │ └── SendGPT.java ├── lib/ │ └─
 
 ---
 
-## Example Usage
+## Known Limitations
 
-1. Create an instance of the `SendGPT` class:
-   ```java
-   SendGPT sendGPT = new SendGPT("Hello, GPT!");
+1. **Single Message Handling**: The application currently processes one message at a time. Multi-turn conversations are not supported.
+2. **Basic Error Feedback**: Errors from the API (e.g., invalid input or quota exceeded) are not detailed in the logs.
+3. **Synchronous Operation**: While thread-safe, the application relies on synchronized methods and waits for the response, which can lead to blocking behavior.
+4. **Limited Logging**: Minimal logging is implemented, making debugging and performance monitoring more challenging.
+5. **File Dependency**: The application depends on `Config.txt` for the API key. If this file is missing or corrupted, the program cannot run.
 
+---
+
+## Technical Notes
+
+### Security
+- Storing the API key in a plain-text file (`Config.txt`) is not ideal for production environments. Consider using secure vaults or encrypted storage for sensitive credentials.
+
+### Compatibility
+- Tested on JDK 8 and later versions. Ensure your development environment supports the required Java libraries (`java.io`, `java.net`, and `java.nio.charset`).
+
+### API Rate Limits
+- The OpenAI API has rate limits based on your subscription tier. Frequent API calls may lead to throttling or errors.
+
+---
+
+## Troubleshooting
+
+### Common Issues and Fixes
+
+- **`FileNotFoundException` for `Config.txt`:**
+  - Ensure the file is placed in the `lib` directory.
+  - Verify the correct file path if running the application from a different working directory.
+
+- **`HTTP request failed with response code`:**
+  - Check the validity of the API key in `Config.txt`.
+  - Verify that your API key has sufficient credits and is active.
+
+- **No Response or Empty Output:**
+  - Confirm that the message passed to the `SendGPT` object is not empty or null.
+  - Check internet connectivity and the API endpoint URL.
+
+---
+
+## Contribution Guidelines
+
+We welcome contributions to improve **SendGPT**. Here’s how you can contribute:
+
+1. **Fork the Repository**: Start by creating a fork of this project.
+2. **Submit Changes**: Create a new branch, make your changes, and submit a pull request.
+3. **Testing**: Ensure your changes pass all tests and do not break existing functionality.
+4. **Documentation**: Update this README if your contribution adds or changes functionality.
+
+---

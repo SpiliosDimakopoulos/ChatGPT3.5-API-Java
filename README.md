@@ -25,12 +25,6 @@
 
 ---
 
-## Directory Structure
-
-project/ │ ├── src/ │ └── SendGPT.java ├── lib/ │ └── Config.txt └── README.md
-
----
-
 ## How to Use
 
 ### Step 1: Set Up the API Key
